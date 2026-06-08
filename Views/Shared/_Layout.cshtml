@@ -42,3 +42,27 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+@section Scripts {
+    <script>
+        const przyciski = document.querySelectorAll('.filter-btn');
+        const wiersze =document.querySelectorAll('table tbody tr');
+
+        przyciski.forEach(function(przycisk) {
+            przycisk.addEventListener('click', function() {
+                const wybranyPoziom = przycisk.getAttribute('data-target');
+
+                wiersze.forEach(function(wiersz) {
+                    const trudnoscWiersza = wiersz.getAttribute('data-difficulty');
+
+                    if(wybranyPoziom=='all' || trudnoscWiersza==wybranyPoziom) {
+                        wiersz.style.display = '';
+                    }
+                    else {
+                        wiersz.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+}

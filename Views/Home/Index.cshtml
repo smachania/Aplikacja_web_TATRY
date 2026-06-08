@@ -106,3 +106,76 @@
         </div>
     </div>
 </section>
+
+<section id="lista_szlakow" class="hiking-trails py-5 bg-light ">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-2"> Lista szlaków</h2>
+        </div>
+
+        <div class="filter-panel p-4 rounded-3 shadow-sm mb-5" style="background-color: #f8f9fa; border: 1px solid #e8ecef;">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-4">
+                    <label for="filter-difficulty" class="form-label fw-bold text-dark"> Trudność: </label>
+                    <select id="filter-difficulty" class="form-select">
+                        <option value="all"> Wszystkie </option>
+                        <option value="easy"> Łatwy </option>
+                        <option value="medium"> Średniozaawansowany </option>
+                        <option value="hard"> Zaawansowany </option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="filter-length" class="form-label fw-bold text-dark"> Długość szlaku (max km): </label>
+                    <input type="number" id="filter-length" class="form-control" placeholder="- km" />
+                </div>
+                <div class="col-md-4 d-flex align-bottom align-items-end">
+                    <button id="btn-filter" class="btn btn-warning fw-bold text-white text-center w-100 rounded-pill"> Filtruj</button>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive rounded-3 shadow-sm">
+            <div class="mb-4 d-flex gap-2">
+                <button class="btn btn-secondary btn-sm filter-btn" data-target="all">Wszystkie</button>
+                <button class="btn btn-success btn-sm filter-btn" data-target="easy">Łatwy</button>
+                <button class="btn btn-primary btn-sm filter-btn" data-target="medium">Średniozaawansowany</button>
+            </div>
+            <table class="table table-hover table-striped align-middle mb-0" id="trails-table">
+                <thead>
+                    <tr>
+                        <th scope="col"> Nazwa szlaku (skąd -> dokąd) </th>
+                        <th scope="col"> Trudność</th>
+                        <th scope="col"> Długość</th>
+                        <th scope="col"> Kolor szlaków</th>
+                        <th scope="col"> Czas przejścia</th>
+                        <th scope="col" class="text-center"> Zobacz</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-difficulty="medium">
+                        <td> class="fw-bold px-4"> Hrebieniok &rarr; Chata Teryho </td>
+                        <td> Średniozaawanasowany</td>
+                        <td> 6.6 km</td>
+                        <td> Zielony </td>
+                        <td> 3 h</td>
+                        <td class="text-center">
+                            <a href="szlaki/teryho" class="btn btn-outline-warning btn-sm fw-bold rounded-pill"> Zobacz opis</a>
+                        </td>
+                    </tr>
+                    <tr data-difficulty="easy"> 
+                        <td>class="fw-bold px-4"> Kuźnice &rarr; Czarny Staw Gąsienicowy </td>
+                        <td> Łatwy </td>
+                        <td> 6.3 km</td>
+                        <td> Niebieski </td>
+                        <td> 3 h</td>
+                        <td class="text-center">
+                            <a href="szlaki/czarny-staw" class="btn btn-outline-warning btn-sm fw-bold rounded-pill"> Zobacz opis</a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</section>
+
