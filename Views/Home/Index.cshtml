@@ -48,7 +48,7 @@
     </div>
 </section>
 
-<section id="polecane-szlaki" class="recommended-trails py-5 text-white" style="background-color: #2c1d11;">
+<section id="polecane" class="recommended-trails py-5 text-white" style="background-color: #2c1d11;">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="display-5 fw-bold mb-2">Polecane szlaki</h2>
@@ -107,7 +107,7 @@
     </div>
 </section>
 
-<section id="lista_szlakow" class="hiking-trails py-5 bg-light ">
+<section id="lista" class="hiking-trails py-5 bg-light ">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="display-5 fw-bold mb-2"> Lista szlaków</h2>
@@ -115,15 +115,6 @@
 
         <div class="filter-panel p-4 rounded-3 shadow-sm mb-5" style="background-color: #f8f9fa; border: 1px solid #e8ecef;">
             <div class="row g-3 align-items-center">
-                <div class="col-md-4">
-                    <label for="filter-difficulty" class="form-label fw-bold text-dark"> Trudność: </label>
-                    <select id="filter-difficulty" class="form-select">
-                        <option value="all"> Wszystkie </option>
-                        <option value="easy"> Łatwy </option>
-                        <option value="medium"> Średniozaawansowany </option>
-                        <option value="hard"> Zaawansowany </option>
-                    </select>
-                </div>
                 <div class="col-md-4">
                     <label for="filter-length" class="form-label fw-bold text-dark"> Długość szlaku (max km): </label>
                     <input type="number" id="filter-length" class="form-control" placeholder="- km" />
@@ -138,6 +129,7 @@
                 <button class="btn btn-secondary btn-sm filter-btn" data-target="all">Wszystkie</button>
                 <button class="btn btn-success btn-sm filter-btn" data-target="easy">Łatwy</button>
                 <button class="btn btn-primary btn-sm filter-btn" data-target="medium">Średniozaawansowany</button>
+                <button class="btn btn-danger btn-sm filter-btn" data-target="hard">Zaawansowany</button>
             </div>
             <table class="table table-hover table-striped align-middle mb-0" id="trails-table">
                 <thead>
@@ -152,7 +144,7 @@
                 </thead>
                 <tbody>
                     <tr data-difficulty="medium">
-                        <td class="fw-bold px-4"> Hrebieniok &rarr; Chata Teryho </td>
+                        <td> class="fw-bold px-4"> Hrebieniok &rarr; Chata Teryho </td>
                         <td> Średniozaawanasowany</td>
                         <td> 6.6 km</td>
                         <td> Zielony </td>
@@ -162,7 +154,7 @@
                         </td>
                     </tr>
                     <tr data-difficulty="easy"> 
-                        <td class="fw-bold px-4"> Kuźnice &rarr; Czarny Staw Gąsienicowy </td>
+                        <td>class="fw-bold px-4"> Kuźnice &rarr; Czarny Staw Gąsienicowy </td>
                         <td> Łatwy </td>
                         <td> 6.3 km</td>
                         <td> Niebieski </td>
@@ -178,4 +170,50 @@
     </div>
 
 </section>
+@section Scripts {
+    <script>
+
+        /*Nadanie logiki przyciskom Łatwy, Średniozaawansowany, Zaawansowany*/
+
+        const przyciskiTrudnosci = document.querySelectorAll('.filter-btn');
+        const wiersze =document.querySelectorAll('table tbody tr');
+        const poleDlugosci=document.querySelector('#filter-length');
+        const przyciskFiltruj = document.querySelector('#btn-filter');
+        let aktualnyPoziom = 'all';
+
+        function filtrujSzlaki() {
+            const wpisanaDlugosc = parseFloat(poleDlugosci.value);
+
+            wiersze.forEach(function(wiersz) {
+                const trudnoscWiersza = wiersz.getAttribute('data-difficulty');
+                const dlugoscWiersza = wiersz.getAttribute('data-length');
+
+                //1. Czy trudność się zgadza?
+                const pasujeTrudnosc = (aktualnyPoziom==='all' || trudnoscWiersza===aktualnyPoziom);
+                //2. Czy długość się zgadza?
+                const pasujeDlugosc = (isNaN(wpisanaDlugosc) || dlugoscWiersza<=wpisanaDlugosc);
+
+                if(pasujeDlugosc&& pasujeTrudnosc) {
+                    wiersz.style.display='';
+                }
+                else {
+                    wiersz.style.display = 'none';
+                }
+            });
+        }
+
+        przyciskiTrudnosci.forEach(function(przycisk) {
+            przycisk.addEventListener('click', function() {
+                aktualnyPoziom= przycisk.getAttribute('data-target');
+                filtrujSzlaki();
+            });
+        });
+
+            
+        przyciskFiltruj.addEventListener('click', function() {
+            filtrujSzlaki();
+        });
+        
+    </script>
+}
 
