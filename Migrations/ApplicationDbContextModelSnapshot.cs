@@ -75,7 +75,7 @@ namespace App_web_Tatry.Migrations
 
                     b.HasIndex("SzlakId");
 
-                    b.ToTable("Zdjecie");
+                    b.ToTable("Zdjecia");
                 });
 
             modelBuilder.Entity("App_web_Tatry.Entities.Zdjecie", b =>
