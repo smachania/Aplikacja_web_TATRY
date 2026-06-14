@@ -8,7 +8,8 @@
         public double Dlugosc { get; set; }
         public double CzasPrzejscia { get; set; }
         public string PoziomTrudnosci { get; set; } = string.Empty;
-
+        public string KolorSzlakow {  get; set; } = string.Empty;
+        public List<Zdjecie> Zdjecia { get; set; } = new List<Zdjecie>();
 
     }
 }

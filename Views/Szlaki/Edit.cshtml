@@ -1,0 +1,64 @@
+@model App_web_Tatry.Entities.Szlak
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Szlak</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nazwa" class="control-label"></label>
+                <input asp-for="Nazwa" class="form-control" />
+                <span asp-validation-for="Nazwa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Opis" class="control-label"></label>
+                <input asp-for="Opis" class="form-control" />
+                <span asp-validation-for="Opis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dlugosc" class="control-label"></label>
+                <input asp-for="Dlugosc" class="form-control" />
+                <span asp-validation-for="Dlugosc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CzasPrzejscia" class="control-label"></label>
+                <input asp-for="CzasPrzejscia" class="form-control" />
+                <span asp-validation-for="CzasPrzejscia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PoziomTrudnosci" class="control-label"></label>
+                <input asp-for="PoziomTrudnosci" class="form-control" />
+                <span asp-validation-for="PoziomTrudnosci" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KolorSzlakow" class="control-label"></label>
+                <input asp-for="KolorSzlakow" class="form-control" />
+                <span asp-validation-for="KolorSzlakow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Zdjecia" class="control-label"></label>
+                <input asp-for="Zdjecia" class="form-control" />
+                <span asp-validation-for="Zdjecia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
