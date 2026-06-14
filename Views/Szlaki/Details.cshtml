@@ -1,66 +1,91 @@
 @model App_web_Tatry.Entities.Szlak
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegó³y szlaku - " + Model.Nazwa;
+
+    // Klasa koloru tekstu w zale¿noœci od trudnoœci szlaku
+    string klasaTrudnosci = "text-dark";
+    if (Model.PoziomTrudnosci == "£atwy") klasaTrudnosci = "text-success";
+    else if (Model.PoziomTrudnosci == "Œredniozaawansowany") klasaTrudnosci = "text-primary";
+    else if (Model.PoziomTrudnosci == "Zaawansowany") klasaTrudnosci = "text-danger";
 }
 
-<h1>Details</h1>
+<section class="trail-hero text-center text-white py-5" style="background-color: #3d2a1a;">
+    <div class="container pt-5">
+        <h1 class="display-3 fw-bold mb-3">@Model.Nazwa</h1>
+        <p class="lead opacity-75 mb-0">Odkryj parametry i przebieg trasy w Tatrach</p>
+    </div>
+</section>
 
-<div>
-    <h4>Szlak</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nazwa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nazwa)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Opis)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Opis)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Dlugosc)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Dlugosc)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CzasPrzejscia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CzasPrzejscia)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PoziomTrudnosci)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PoziomTrudnosci)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KolorSzlakow)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KolorSzlakow)
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Zdjecia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Zdjecia)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<section class="trail-stats py-4 bg-light border-bottom">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3 border rounded-3 bg-white shadow-sm">
+                    <h6 class="text-muted mb-1">Trudnoœæ</h6>
+                    <p class="fw-bold mb-0 @klasaTrudnosci">@Model.PoziomTrudnosci</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3 border rounded-3 bg-white shadow-sm">
+                    <h6 class="text-muted mb-1">D³ugoœæ</h6>
+                    <p class="fw-bold mb-0 text-dark">@Model.Dlugosc km</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3 border rounded-3 bg-white shadow-sm">
+                    <h6 class="text-muted mb-1">Kolor szlaku</h6>
+                    <p class="fw-bold mb-0 text-dark">@Model.KolorSzlakow</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <div class="p-3 border rounded-3 bg-white shadow-sm">
+                    <h6 class="text-muted mb-1">Czas przejœcia</h6>
+                    <p class="fw-bold mb-0 text-dark">@Model.CzasPrzejscia h</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="trail-description py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h3 class="fw-bold mb-3">Przebieg trasy i opis</h3>
+                <div class="text-muted" style="white-space: pre-line;">
+                    @Model.Opis
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="fw-bold mb-3 text-center">Galeria zdjêæ</h4>
+                <div class="row g-2 justify-content-center">
+                    @if (Model.Zdjecia != null && Model.Zdjecia.Any())
+                    {
+                        foreach (var zdjecie in Model.Zdjecia)
+                        {
+                            <div class="col-6">
+                                <img src="@zdjecie.SciezkaPliku" class="img-fluid rounded-3 shadow-sm" alt="Zdjêcie z trasy @Model.Nazwa" style="height: 180px; width: 100%; object-fit: cover;" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-12 text-center">
+                            <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded-3 shadow" style="height:250px;">
+                                <p class="mb-0 opacity-75">Brak zdjêæ dla tego szlaku</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container pb-5 text-center">
+    <a asp-action="Index" class="btn btn-outline-secondary fw-bold rounded-pill px-4">
+        &larr; Powrót do listy szlaków
+    </a>
 </div>

@@ -17,7 +17,7 @@ public class SzlakiController : Controller
     // GET: SZLAKS
     public async Task<IActionResult> Index()    
     {
-        return View(await _context.Szlaki.ToListAsync());
+        return View(await _context.Szlaki.Include(s => s.Zdjecia).ToListAsync());
     }
 
     // GET: SZLAKS/Details/5
@@ -29,7 +29,8 @@ public class SzlakiController : Controller
         }
 
         var szlak = await _context.Szlaki
-            .FirstOrDefaultAsync(m => m.Id == id);
+        .Include(s => s.Zdjecia)
+        .FirstOrDefaultAsync(m => m.Id == id);
         if (szlak == null)
         {
             return NotFound();
