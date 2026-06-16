@@ -54,6 +54,18 @@ namespace App_web_Tatry.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Szlaki");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CzasPrzejscia = 2.5,
+                            Dlugosc = 7.7999999999999998,
+                            KolorSzlakow = "Czerwony",
+                            Nazwa = "Morskie Oko z Palenicy Białczańskiej",
+                            Opis = "Najpopularniejszy szlak w Tatrach, idealny dla rodzin z dziećmi. Prowadzi asfaltową drogą wzdłuż malowniczych potoków aż do schroniska nad największym tatrzańskim jeziorem.",
+                            PoziomTrudnosci = "Łatwy"
+                        });
                 });
 
             modelBuilder.Entity("App_web_Tatry.Entities.Zdjecie", b =>
