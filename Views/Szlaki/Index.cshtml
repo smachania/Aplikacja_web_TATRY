@@ -1,8 +1,62 @@
 @model IEnumerable<App_web_Tatry.Entities.Szlak>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Panel Administratora - Szlaki";
 }
+
+<section class="py-5 bg-dark min-vh-100 text-white" style="padding-top: 7rem !important;">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center border-bottom pb-3 mb-4 gap-2">
+            <div>
+                <h1 class="h2 fw-bold text-warning mb-0">System Zarz¹dzania Treœci¹ (CMS)</h1>
+                <p class="text-muted mb-0 small">Baza danych szlaków turystycznych Tatr</p>
+            </div>
+            <a asp-controller="Szlaki" asp-action="Create" class="btn btn-success fw-bold rounded-pill px-4">
+                + Dodaj nowy szlak
+            </a>
+        </div>
+
+        <div class="table-responsive rounded-3 shadow bg-white text-dark p-3">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" class="px-3">Nazwa obiektu</th>
+                        <th scope="col">Poziom Trudnoœci</th>
+                        <th scope="col">D³ugoœæ trasy</th>
+                        <th scope="col">Kolorystyka</th>
+                        <th scope="col">Czas (h)</th>
+                        <th scope="col" class="text-center">Operacje CRUD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold text-primary">@item.Nazwa</td>
+                            <td>
+                                <span class="badge @(item.PoziomTrudnosci == "£atwy" ? "bg-success" : "bg-danger")">
+                                    @item.PoziomTrudnosci
+                                </span>
+                            </td>
+                            <td>@item.Dlugosc km</td>
+                            <td>@item.KolorSzlakow</td>
+                            <td>@item.CzasPrzejscia h</td>
+                            <td class="text-center">
+                                <div class="btn-group gap-2">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm rounded-pill px-3">Edytuj</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-info btn-sm rounded-pill px-3">Podgl¹d</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm rounded-pill px-3">Usuñ</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!--
 
 <section class="hero-section d-flex align-items-center justify-content-center text-center text-white">
     <div class="container">
@@ -174,3 +228,4 @@
         });
     </script>
 }
+-->
