@@ -1,6 +1,6 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using App_web_Tatry.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace App_web_Tatry.Controllers;
 
@@ -32,4 +32,5 @@ public class HomeController : Controller
     {
         return View();
     }
+    
 }

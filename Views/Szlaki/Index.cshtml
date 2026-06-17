@@ -145,7 +145,7 @@
         let aktualnyPoziom = 'all';
 
         function filtrujSzlaki() {
-            const wpisanaDlugosc = parseFloat(poleDlugosci.value);
+            const wpisanaDlugosc = parseFloat(poleDlugosci.value.replace(',', '.'));
 
             wiersze.forEach(function(wiersz) {
                 const trudnoscWiersza = wiersz.getAttribute('data-difficulty');

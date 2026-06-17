@@ -1,7 +1,8 @@
 
+using App_web_Tatry.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using App_web_Tatry.Entities;
 
 public class SzlakiController : Controller
 {
@@ -40,6 +41,7 @@ public class SzlakiController : Controller
     }
 
     // GET: SZLAKS/Create
+    [Authorize]
     public IActionResult Create()
     {
         return View();
@@ -50,6 +52,7 @@ public class SzlakiController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize]
     public async Task<IActionResult> Create([Bind("Id,Nazwa,Opis,Dlugosc,CzasPrzejscia,PoziomTrudnosci,KolorSzlakow,Zdjecia")] Szlak szlak, List<IFormFile> plikiZdjec)
     {
         if (ModelState.IsValid)
@@ -96,6 +99,7 @@ public class SzlakiController : Controller
     }
 
     // GET: SZLAKS/Edit/5
+    [Authorize]
     public async Task<IActionResult> Edit(int? id)
     {
         if (id == null)
@@ -116,6 +120,7 @@ public class SzlakiController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Authorize]
     public async Task<IActionResult> Edit(int? id, [Bind("Id,Nazwa,Opis,Dlugosc,CzasPrzejscia,PoziomTrudnosci,KolorSzlakow,Zdjecia")] Szlak szlak)
     {
         if (id != szlak.Id)
@@ -147,6 +152,7 @@ public class SzlakiController : Controller
     }
 
     // GET: SZLAKS/Delete/5
+    [Authorize]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null)
@@ -167,6 +173,7 @@ public class SzlakiController : Controller
     // POST: SZLAKS/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
+    [Authorize]
     public async Task<IActionResult> DeleteConfirmed(int? id)
     {
         var szlak = await _context.Szlaki.FindAsync(id);
