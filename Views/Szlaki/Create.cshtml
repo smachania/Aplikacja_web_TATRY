@@ -4,67 +4,71 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>Szlak</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="container pt-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5 card p-4 shadow-sm bg-white text-dark rounded-3">
 
-            <div class="form-group">
-                <label asp-for="Nazwa" class="control-label"></label>
-                <input asp-for="Nazwa" class="form-control" />
-                <span asp-validation-for="Nazwa" class="text-danger"></span>
-            </div>
+            <h1 class="text-center fw-bold text-success mb-1">Create</h1>
+            <h4 class="text-center text-muted small">Szlak</h4>
+            <hr />
 
-            <div class="form-group">
-                <label asp-for="Opis" class="control-label"></label>
-                <input asp-for="Opis" class="form-control" />
-                <span asp-validation-for="Opis" class="text-danger"></span>
-            </div>
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-            <div class="form-group">
-                <label asp-for="Dlugosc" class="control-label"></label>
-                <input asp-for="Dlugosc" class="form-control" />
-                <span asp-validation-for="Dlugosc" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Nazwa" class="control-label fw-bold"></label>
+                    <input asp-for="Nazwa" class="form-control" />
+                    <span asp-validation-for="Nazwa" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="CzasPrzejscia" class="control-label"></label>
-                <input asp-for="CzasPrzejscia" class="form-control" />
-                <span asp-validation-for="CzasPrzejscia" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Opis" class="control-label fw-bold"></label>
+                    <input asp-for="Opis" class="form-control" />
+                    <span asp-validation-for="Opis" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="PoziomTrudnosci" class="control-label"></label>
-                <input asp-for="PoziomTrudnosci" class="form-control" />
-                <span asp-validation-for="PoziomTrudnosci" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Dlugosc" class="control-label fw-bold"></label>
+                    <input asp-for="Dlugosc" class="form-control" />
+                    <span asp-validation-for="Dlugosc" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="KolorSzlakow" class="control-label"></label>
-                <input asp-for="KolorSzlakow" class="form-control" />
-                <span asp-validation-for="KolorSzlakow" class="text-danger"></span>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="CzasPrzejscia" class="control-label fw-bold"></label>
+                    <input asp-for="CzasPrzejscia" class="form-control" />
+                    <span asp-validation-for="CzasPrzejscia" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Zdjecia" class="control-label"></label>
-                <input asp-for="Zdjecia" class="form-control" />
-                <span asp-validation-for="Zdjecia" class="text-danger"></span>
-            </div>
-            <div class="form-group mb-3">
-                <label class="control-label">Dodaj zdjêcia szlaku</label>
-                <input type="file" name="plikiZdjec" class="form-control" multiple accept="image/*" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group mb-3">
+                    <label asp-for="PoziomTrudnosci" class="control-label fw-bold"></label>
+                    <input asp-for="PoziomTrudnosci" class="form-control" />
+                    <span asp-validation-for="PoziomTrudnosci" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="KolorSzlakow" class="control-label fw-bold"></label>
+                    <input asp-for="KolorSzlakow" class="form-control" />
+                    <span asp-validation-for="KolorSzlakow" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Zdjecia" class="control-label fw-bold"></label>
+                    <input asp-for="Zdjecia" class="form-control" />
+                    <span asp-validation-for="Zdjecia" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label class="control-label fw-bold text-primary">Dodaj zdjêcia szlaku</label>
+                    <input type="file" name="plikiZdjec" class="form-control" multiple accept="image/*" />
+                </div>
+
+                <div class="form-group d-grid gap-2">
+                    <input type="submit" value="Create" class="btn btn-success fw-bold rounded-pill" />
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm rounded-pill mt-1">Back to List</a>
+                </div>
+            </form>
+
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
