@@ -8,6 +8,7 @@ namespace App_web_Tatry.Entities
         public DbSet<Szlak> Szlaki { get; set; }
         public DbSet<Zdjecie> Zdjecia { get; set; }
         
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -24,6 +25,7 @@ namespace App_web_Tatry.Entities
                 }
             );
         }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

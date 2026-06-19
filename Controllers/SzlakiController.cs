@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App_web_Tatry.Controllers
 {
-    // ZMIANA: Blokujemy ca³y kontroler na poziomie klasy wy³¹cznie dla u¿ytkowników z rol¹ Admin
     [Authorize(Roles = "Admin")]
     public class SzlakiController : Controller
     {
@@ -18,14 +17,11 @@ namespace App_web_Tatry.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Szlaki (Panel administracyjny)
         public async Task<IActionResult> Index()
         {
             return View(await _context.Szlaki.Include(s => s.Zdjecia).ToListAsync());
         }
 
-        // GET: Szlaki/Details/5
-        // ZMIANA: Odblokowujemy tê akcjê dla wszystkich (w tym niezalogowanych goœci)
         [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
@@ -39,15 +35,13 @@ namespace App_web_Tatry.Controllers
 
             return View(szlak);
         }
-        //GET: SZLAKI/Create
+
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: SZLAKS/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -96,7 +90,6 @@ namespace App_web_Tatry.Controllers
             return View(szlak);
         }
 
-        // GET: SZLAKS/Edit/5
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -113,9 +106,6 @@ namespace App_web_Tatry.Controllers
             return View(szlak);
         }
 
-        // POST: SZLAKS/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -149,7 +139,6 @@ namespace App_web_Tatry.Controllers
             return View(szlak);
         }
 
-        // GET: SZLAKS/Delete/5
         [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -168,7 +157,6 @@ namespace App_web_Tatry.Controllers
             return View(szlak);
         }
 
-        // POST: SZLAKS/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
